@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOY STORY Admin Dashboard | Manage Content</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-dashboard-body">
+    <!-- Animated Background -->
+    <div class="background-container cinematic-bg admin-bg">
+        <div class="sky-background night-sky"></div>
+        <div class="stars-container">
+            <div class="star-layer star-layer-1"></div>
+            <div class="star-layer star-layer-2"></div>
+            <div class="star-layer star-layer-3"></div>
+        </div>
+        <div class="clouds-container night-clouds">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+        </div>
+        <div class="moon-glow"></div>
+        <div class="lamp-glow"></div>
+    </div>
+
+    <!-- Custom Cursor for Admin -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-hat-cowboy"></i>
+                </div>
+                <span class="sidebar-title">TOY STORY</span>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="#dashboard" class="nav-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#movies" class="nav-link">
+                            <i class="fas fa-film"></i>
+                            <span class="nav-text">Movies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#characters" class="nav-link">
+                            <i class="fas fa-users"></i>
+                            <span class="nav-text">Characters</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#search-logs" class="nav-link">
+                            <i class="fas fa-search"></i>
+                            <span class="nav-text">Search & Logs</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="admin-login.html" class="nav-link logout-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-text">Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+            <!-- Top Bar -->
+            <header class="admin-topbar glassmorphism-card">
+                <div class="topbar-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="admin-greeting">
+                        <h1>Welcome back, <span class="highlight">Admin</span>!</h1>
+                        <p>Manage your Toy Story fan site content</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <!-- Global Search -->
+                    <div class="global-search">
+                        <input 
+                            type="text" 
+                            class="search-input glass-input" 
+                            placeholder="Search movies, characters..."
+                            id="globalSearch"
+                            aria-label="Global search"
+                        >
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <!-- Notifications -->
+                    <button class="notification-btn" id="notificationBtn" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+
+                    <!-- Profile Avatar -->
+                    <div class="profile-avatar">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23F4C542'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='%231a2744' font-family='Bangers'%3EA%3C/text%3E%3C/svg%3E" alt="Admin Avatar" class="avatar-img">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="admin-content">
+                <!-- Stats Row -->
+                <section class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card glassmorphism-card">
+                            <div class="stat-icon movie-icon">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 class="stat-number" data-target="4">0</h3>
+                                <p class="stat-label">Total Movies</p>
+                            </div>
+                            <div class="stat-glow"></div>
+                        </div>
+
+                        <div class="stat-card glassmorphism-card">
+                            <div class="stat-icon character-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 class="stat-number" data-target="6">0</h3>
+                                <p class="stat-label">Total Characters</p>
+                            </div>
+                            <div class="stat-glow"></div>
+                        </div>
+
+                        <div class="stat-card glassmorphism-card">
+                            <div class="stat-icon update-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 class="stat-number">24</h3>
+                                <p class="stat-label">Hours Ago</p>
+                            </div>
+                            <div class="stat-glow"></div>
+                        </div>
+
+                        <div class="stat-card glassmorphism-card">
+                            <div class="stat-icon session-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 class="stat-number" data-target="12">0</h3>
+                                <p class="stat-label">Active Sessions</p>
+                            </div>
+                            <div class="stat-glow"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Movies Management Section -->
+                <section class="content-section" id="movies">
+                    <div class="section-header glassmorphism-card">
+                        <div class="section-title-wrapper">
+                            <h2><i class="fas fa-film"></i> Movies Management</h2>
+                            <p>Edit and manage movie entries</p>
+                        </div>
+                        <button class="btn btn-primary cinematic-btn" id="addMovieBtn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add New Movie</span>
+                            <span class="btn-shine"></span>
+                        </button>
+                    </div>
+
+                    <!-- Search/Filter Bar -->
+                    <div class="filter-bar glassmorphism-card">
+                        <div class="filter-group">
+                            <input 
+                                type="text" 
+                                class="filter-input glass-input" 
+                                placeholder="Search movies..."
+                                id="movieSearch"
+                            >
+                            <select class="filter-select glass-input" id="movieFilter">
+                                <option value="">All Ratings</option>
+                                <option value="G">G</option>
+                                <option value="PG">PG</option>
+                                <option value="PG-13">PG-13</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Movies Table -->
+                    <div class="table-container glassmorphism-card">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Release Year</th>
+                                    <th>Rating</th>
+                                    <th>Poster Preview</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="moviesTableBody">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Toy Story</td>
+                                    <td>1995</td>
+                                    <td><span class="rating-badge rating-g">G</span></td>
+                                    <td>
+                                        <div class="poster-preview">
+                                            <img src="img/toystory1.webp" alt="Toy Story Poster">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Toy Story 2</td>
+                                    <td>1999</td>
+                                    <td><span class="rating-badge rating-g">G</span></td>
+                                    <td>
+                                        <div class="poster-preview">
+                                            <img src="img/Toy_Story_2_-_Poster.webp" alt="Toy Story 2 Poster">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Toy Story 3</td>
+                                    <td>2010</td>
+                                    <td><span class="rating-badge rating-g">G</span></td>
+                                    <td>
+                                        <div class="poster-preview">
+                                            <img src="img/toystory3.jpg" alt="Toy Story 3 Poster">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Toy Story 4</td>
+                                    <td>2019</td>
+                                    <td><span class="rating-badge rating-g">G</span></td>
+                                    <td>
+                                        <div class="poster-preview">
+                                            <img src="img/toystory4.jpg" alt="Toy Story 4 Poster">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Empty State (hidden by default) -->
+                        <div class="empty-state hidden" id="moviesEmptyState">
+                            <i class="fas fa-film"></i>
+                            <h3>No Movies Found</h3>
+                            <p>Start by adding your first movie!</p>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="pagination-btn" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Characters Management Section -->
+                <section class="content-section" id="characters">
+                    <div class="section-header glassmorphism-card">
+                        <div class="section-title-wrapper">
+                            <h2><i class="fas fa-users"></i> Characters Management</h2>
+                            <p>Edit and manage character profiles</p>
+                        </div>
+                        <button class="btn btn-primary cinematic-btn" id="addCharacterBtn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add New Character</span>
+                            <span class="btn-shine"></span>
+                        </button>
+                    </div>
+
+                    <!-- Search/Filter Bar -->
+                    <div class="filter-bar glassmorphism-card">
+                        <div class="filter-group">
+                            <input 
+                                type="text" 
+                                class="filter-input glass-input" 
+                                placeholder="Search characters..."
+                                id="characterSearch"
+                            >
+                            <select class="filter-select glass-input" id="characterFilter">
+                                <option value="">All Roles</option>
+                                <option value="Protagonist">Protagonist</option>
+                                <option value="Sidekick">Sidekick</option>
+                                <option value="Antagonist">Antagonist</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Characters Table -->
+                    <div class="table-container glassmorphism-card">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Avatar</th>
+                                    <th>Name</th>
+                                    <th>Role Title</th>
+                                    <th>Quote Preview</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="charactersTableBody">
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="avatar-preview">
+                                            <img src="img/woody.jpg" alt="Woody">
+                                        </div>
+                                    </td>
+                                    <td>Woody</td>
+                                    <td><span class="role-badge role-protagonist">Protagonist</span></td>
+                                    <td class="quote-preview">"You've got a friend in me..."</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <div class="avatar-preview">
+                                            <img src="img/buzz.jpg" alt="Buzz Lightyear">
+                                        </div>
+                                    </td>
+                                    <td>Buzz Lightyear</td>
+                                    <td><span class="role-badge role-protagonist">Protagonist</span></td>
+                                    <td class="quote-preview">"To infinity and beyond!"</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <div class="avatar-preview">
+                                            <img src="img/jessie.jpg" alt="Jessie">
+                                        </div>
+                                    </td>
+                                    <td>Jessie</td>
+                                    <td><span class="role-badge role-sidekick">Sidekick</span></td>
+                                    <td class="quote-preview">"When somebody loves you..."</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Empty State (hidden by default) -->
+                        <div class="empty-state hidden" id="charactersEmptyState">
+                            <i class="fas fa-users"></i>
+                            <h3>No Characters Found</h3>
+                            <p>Start by adding your first character!</p>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="pagination-btn" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Movie Modal -->
+    <div class="modal-overlay hidden" id="addMovieModal">
+        <div class="modal-content glassmorphism-card admin-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus"></i> Add New Movie</h2>
+                <button class="modal-close" id="closeMovieModal" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="modal-form" id="addMovieForm" action="/admin/movies.php" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="movieTitle" class="form-label">
+                            <i class="fas fa-film"></i>
+                            <span>Title</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="movieTitle" 
+                            name="title" 
+                            class="form-input glass-input" 
+                            placeholder="Enter movie title"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="movieYear" class="form-label">
+                            <i class="fas fa-calendar"></i>
+                            <span>Release Year</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="movieYear" 
+                            name="release_year" 
+                            class="form-input glass-input" 
+                            placeholder="e.g., 1995"
+                            min="1990"
+                            max="2030"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="movieRuntime" class="form-label">
+                            <i class="fas fa-clock"></i>
+                            <span>Runtime (minutes)</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="movieRuntime" 
+                            name="runtime" 
+                            class="form-input glass-input" 
+                            placeholder="e.g., 81"
+                            min="60"
+                            max="180"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="movieRating" class="form-label">
+                            <i class="fas fa-star"></i>
+                            <span>Rating</span>
+                        </label>
+                        <select id="movieRating" name="rating" class="form-input glass-input" required>
+                            <option value="">Select rating</option>
+                            <option value="G">G</option>
+                            <option value="PG">PG</option>
+                            <option value="PG-13">PG-13</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="movieTagline" class="form-label">
+                        <i class="fas fa-quote-left"></i>
+                        <span>Tagline</span>
+                    </label>
+                    <textarea 
+                        id="movieTagline" 
+                        name="tagline" 
+                        class="form-input glass-input form-textarea" 
+                        placeholder="Enter movie tagline or description"
+                        rows="3"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="moviePoster" class="form-label">
+                        <i class="fas fa-image"></i>
+                        <span>Poster URL</span>
+                    </label>
+                    <input 
+                        type="url" 
+                        id="moviePoster" 
+                        name="poster_url" 
+                        class="form-input glass-input" 
+                        placeholder="https://example.com/poster.jpg"
+                        required
+                    >
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary cinematic-btn" id="cancelMovieBtn">
+                        <i class="fas fa-times"></i>
+                        <span>Cancel</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary cinematic-btn">
+                        <i class="fas fa-save"></i>
+                        <span>Save Movie</span>
+                        <span class="btn-shine"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Character Modal -->
+    <div class="modal-overlay hidden" id="addCharacterModal">
+        <div class="modal-content glassmorphism-card admin-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus"></i> Add New Character</h2>
+                <button class="modal-close" id="closeCharacterModal" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="modal-form" id="addCharacterForm" action="/admin/characters.php" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="characterName" class="form-label">
+                            <i class="fas fa-user"></i>
+                            <span>Name</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="characterName" 
+                            name="name" 
+                            class="form-input glass-input" 
+                            placeholder="Enter character name"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="characterRole" class="form-label">
+                            <i class="fas fa-badge"></i>
+                            <span>Role Title</span>
+                        </label>
+                        <select id="characterRole" name="role_title" class="form-input glass-input" required>
+                            <option value="">Select role</option>
+                            <option value="Protagonist">Protagonist</option>
+                            <option value="Sidekick">Sidekick</option>
+                            <option value="Antagonist">Antagonist</option>
+                            <option value="Supporting">Supporting</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="characterQuote" class="form-label">
+                        <i class="fas fa-quote-left"></i>
+                        <span>Famous Quote</span>
+                    </label>
+                    <textarea 
+                        id="characterQuote" 
+                        name="quote" 
+                        class="form-input glass-input form-textarea" 
+                        placeholder="Enter character's famous quote"
+                        rows="3"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="characterDescription" class="form-label">
+                        <i class="fas fa-align-left"></i>
+                        <span>Description</span>
+                    </label>
+                    <textarea 
+                        id="characterDescription" 
+                        name="description" 
+                        class="form-input glass-input form-textarea" 
+                        placeholder="Enter character description"
+                        rows="4"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="characterAvatar" class="form-label">
+                        <i class="fas fa-image"></i>
+                        <span>Avatar URL</span>
+                    </label>
+                    <input 
+                        type="url" 
+                        id="characterAvatar" 
+                        name="avatar_url" 
+                        class="form-input glass-input" 
+                        placeholder="https://example.com/avatar.jpg"
+                        required
+                    >
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary cinematic-btn" id="cancelCharacterBtn">
+                        <i class="fas fa-times"></i>
+                        <span>Cancel</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary cinematic-btn">
+                        <i class="fas fa-save"></i>
+                        <span>Save Character</span>
+                        <span class="btn-shine"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

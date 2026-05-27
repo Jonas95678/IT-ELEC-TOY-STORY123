@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toy Story Admin Portal - Login</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body class="admin-login-body">
+    
+    <!-- Animated Background -->
+    <div class="starry-background">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+        <div class="floating-silhouettes">
+            <div class="silhouette silhouette-1">🤠</div>
+            <div class="silhouette silhouette-2">🚀</div>
+            <div class="silhouette silhouette-3">🐕</div>
+        </div>
+    </div>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="glassmorphism-card login-card">
+            <div class="login-header">
+                <h1 class="gold-gradient-text">TOY STORY</h1>
+                <h2 class="admin-portal-title">Admin Portal</h2>
+                <div class="logo-decoration">🧸</div>
+            </div>
+
+            <form id="loginForm" class="login-form" action="admin-dashboard.html" method="POST">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="form-input glass-input" 
+                            placeholder="Enter your username"
+                            required
+                            autocomplete="username"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input glass-input" 
+                            placeholder="Enter your password"
+                            required
+                            autocomplete="current-password"
+                        >
+                        <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                            <span class="eye-icon">👁️</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-messages" id="formMessages">
+                    <!-- Validation messages will appear here -->
+                </div>
+
+                <div class="login-actions">
+                    <button type="submit" class="btn btn-primary btn-full-width" id="signInBtn">
+                        <span class="btn-text">Sign In</span>
+                        <span class="btn-loader" style="display: none;">
+                            <span class="loader-spinner"></span>
+                        </span>
+                    </button>
+                    
+                    <a href="main.html" class="btn btn-secondary btn-full-width">
+                        ← Back to Fan Site
+                    </a>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <p class="copyright-text">© 2024 Toy Story Fan Site. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="admin-script.js"></script>
+</body>
+</html>

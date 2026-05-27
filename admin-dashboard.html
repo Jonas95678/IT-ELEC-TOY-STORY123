@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toy Story Admin Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body class="admin-dashboard-body">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-logo gold-gradient-text">TOY STORY</h1>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                ☰
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="#dashboard" class="nav-link" data-section="dashboard">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#movies" class="nav-link" data-section="movies">
+                        <span class="nav-icon">🎬</span>
+                        <span class="nav-text">Movies</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#characters" class="nav-link" data-section="characters">
+                        <span class="nav-icon">👾</span>
+                        <span class="nav-text">Characters</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#search-logs" class="nav-link" data-section="search-logs">
+                        <span class="nav-icon">🔍</span>
+                        <span class="nav-text">Search & Logs</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <a href="admin-login.html" class="nav-link logout-link">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    ☰
+                </button>
+                <h2 class="page-title" id="pageTitle">Dashboard Overview</h2>
+            </div>
+            
+            <div class="top-bar-right">
+                <div class="global-search">
+                    <input 
+                        type="text" 
+                        class="search-input glass-input" 
+                        placeholder="Quick search..."
+                        id="globalSearch"
+                    >
+                    <span class="search-icon">🔍</span>
+                </div>
+                
+                <button class="notification-btn" aria-label="Notifications">
+                    🔔
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <div class="profile-dropdown">
+                    <button class="profile-btn" aria-label="Profile menu">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F4C542'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M12 14c-6 0-8 3-8 6v2h16v-2c0-3-2-6-8-6z'/%3E%3C/svg%3E" alt="Admin Avatar" class="profile-avatar">
+                        <span class="profile-name">Admin</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="content-wrapper">
+            <!-- Stats Row -->
+            <section class="stats-row">
+                <div class="glassmorphism-card stat-card">
+                    <div class="stat-icon">🎬</div>
+                    <div class="stat-info">
+                        <h3 class="stat-number" data-target="4">0</h3>
+                        <p class="stat-label">Total Movies</p>
+                    </div>
+                </div>
+                
+                <div class="glassmorphism-card stat-card">
+                    <div class="stat-icon">👾</div>
+                    <div class="stat-info">
+                        <h3 class="stat-number" data-target="6">0</h3>
+                        <p class="stat-label">Total Characters</p>
+                    </div>
+                </div>
+                
+                <div class="glassmorphism-card stat-card">
+                    <div class="stat-icon">🕒</div>
+                    <div class="stat-info">
+                        <h3 class="stat-number" id="lastUpdated">--</h3>
+                        <p class="stat-label">Last Updated</p>
+                    </div>
+                </div>
+                
+                <div class="glassmorphism-card stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3 class="stat-number" data-target="12">0</h3>
+                        <p class="stat-label">Active Sessions</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Movies Management Section -->
+            <section class="content-section" id="moviesSection">
+                <div class="section-header">
+                    <h3 class="section-title">🎬 Movies Management</h3>
+                    <button class="btn btn-primary" id="addMovieBtn">
+                        ➕ Add New Movie
+                    </button>
+                </div>
+                
+                <div class="search-filter-bar">
+                    <input 
+                        type="text" 
+                        class="filter-input glass-input" 
+                        placeholder="Filter movies..."
+                        id="movieFilter"
+                    >
+                    <select class="filter-select glass-input" id="movieSort">
+                        <option value="title">Sort by Title</option>
+                        <option value="year">Sort by Year</option>
+                        <option value="rating">Sort by Rating</option>
+                    </select>
+                </div>
+                
+                <div class="table-container glassmorphism-card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Release Year</th>
+                                <th>Rating</th>
+                                <th>Poster Preview</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="moviesTableBody">
+                            <!-- Sample Data - Replace with dynamic content -->
+                            <tr>
+                                <td>1</td>
+                                <td>Toy Story</td>
+                                <td>1995</td>
+                                <td>⭐ 8.3</td>
+                                <td><div class="poster-preview">🎬</div></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit" aria-label="Edit movie">✏️</button>
+                                        <button class="btn-icon btn-delete" aria-label="Delete movie">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Toy Story 2</td>
+                                <td>1999</td>
+                                <td>⭐ 7.9</td>
+                                <td><div class="poster-preview">🎬</div></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit" aria-label="Edit movie">✏️</button>
+                                        <button class="btn-icon btn-delete" aria-label="Delete movie">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- Empty State (hidden by default) -->
+                    <div class="empty-state" id="moviesEmptyState" style="display: none;">
+                        <div class="empty-illustration">🎬</div>
+                        <p class="empty-text">No movies found. Add your first movie!</p>
+                    </div>
+                </div>
+                
+                <div class="pagination-controls">
+                    <button class="btn btn-secondary" disabled>← Previous</button>
+                    <span class="pagination-info">Page 1 of 1</span>
+                    <button class="btn btn-secondary" disabled>Next →</button>
+                </div>
+            </section>
+
+            <!-- Characters Management Section -->
+            <section class="content-section" id="charactersSection">
+                <div class="section-header">
+                    <h3 class="section-title">👾 Characters Management</h3>
+                    <button class="btn btn-primary" id="addCharacterBtn">
+                        ➕ Add New Character
+                    </button>
+                </div>
+                
+                <div class="search-filter-bar">
+                    <input 
+                        type="text" 
+                        class="filter-input glass-input" 
+                        placeholder="Filter characters..."
+                        id="characterFilter"
+                    >
+                    <select class="filter-select glass-input" id="characterSort">
+                        <option value="name">Sort by Name</option>
+                        <option value="role">Sort by Role</option>
+                    </select>
+                </div>
+                
+                <div class="table-container glassmorphism-card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Role Title</th>
+                                <th>Quote Preview</th>
+                                <th>Avatar</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="charactersTableBody">
+                            <!-- Sample Data - Replace with dynamic content -->
+                            <tr>
+                                <td>1</td>
+                                <td>Woody</td>
+                                <td>Sheriff</td>
+                                <td>"You've got a friend in me..."</td>
+                                <td><div class="avatar-preview">🤠</div></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit" aria-label="Edit character">✏️</button>
+                                        <button class="btn-icon btn-delete" aria-label="Delete character">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Buzz Lightyear</td>
+                                <td>Space Ranger</td>
+                                <td>"To infinity and beyond!"</td>
+                                <td><div class="avatar-preview">🚀</div></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit" aria-label="Edit character">✏️</button>
+                                        <button class="btn-icon btn-delete" aria-label="Delete character">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- Empty State (hidden by default) -->
+                    <div class="empty-state" id="charactersEmptyState" style="display: none;">
+                        <div class="empty-illustration">👾</div>
+                        <p class="empty-text">No characters found. Add your first character!</p>
+                    </div>
+                </div>
+                
+                <div class="pagination-controls">
+                    <button class="btn btn-secondary" disabled>← Previous</button>
+                    <span class="pagination-info">Page 1 of 1</span>
+                    <button class="btn btn-secondary" disabled>Next →</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Add Movie Modal -->
+    <div class="modal-overlay" id="addMovieModal">
+        <div class="modal-content glassmorphism-card">
+            <div class="modal-header">
+                <h3 class="modal-title">➕ Add New Movie</h3>
+                <button class="modal-close" id="closeMovieModal" aria-label="Close modal">✕</button>
+            </div>
+            
+            <form id="addMovieForm" class="modal-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="movieTitle" class="form-label">Title *</label>
+                    <input type="text" id="movieTitle" name="title" class="form-input glass-input" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="movieYear" class="form-label">Release Year *</label>
+                        <input type="number" id="movieYear" name="release_year" class="form-input glass-input" min="1900" max="2099" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="movieRuntime" class="form-label">Runtime (min)</label>
+                        <input type="number" id="movieRuntime" name="runtime" class="form-input glass-input" min="1">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="movieRating" class="form-label">Rating</label>
+                        <input type="text" id="movieRating" name="rating" class="form-input glass-input" placeholder="e.g., PG, G, PG-13">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="moviePoster" class="form-label">Poster URL</label>
+                        <input type="url" id="moviePoster" name="poster_url" class="form-input glass-input" placeholder="https://...">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="movieTagline" class="form-label">Tagline</label>
+                    <textarea id="movieTagline" name="tagline" class="form-input glass-input" rows="3" placeholder="Enter movie tagline..."></textarea>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelMovieBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Movie</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Character Modal -->
+    <div class="modal-overlay" id="addCharacterModal">
+        <div class="modal-content glassmorphism-card">
+            <div class="modal-header">
+                <h3 class="modal-title">➕ Add New Character</h3>
+                <button class="modal-close" id="closeCharacterModal" aria-label="Close modal">✕</button>
+            </div>
+            
+            <form id="addCharacterForm" class="modal-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="characterName" class="form-label">Name *</label>
+                    <input type="text" id="characterName" name="name" class="form-input glass-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="characterRole" class="form-label">Role Title *</label>
+                    <input type="text" id="characterRole" name="role_title" class="form-input glass-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="characterQuote" class="form-label">Quote</label>
+                    <textarea id="characterQuote" name="quote" class="form-input glass-input" rows="2" placeholder="Enter character quote..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="characterDescription" class="form-label">Description</label>
+                    <textarea id="characterDescription" name="description" class="form-input glass-input" rows="4" placeholder="Enter character description..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="characterAvatar" class="form-label">Avatar URL</label>
+                    <input type="url" id="characterAvatar" name="avatar_url" class="form-input glass-input" placeholder="https://...">
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelCharacterBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Character</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="admin-script.js"></script>
+</body>
+</html>
