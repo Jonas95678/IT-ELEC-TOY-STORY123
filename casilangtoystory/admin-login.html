@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOY STORY Admin Portal | Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-login-body">
+    <!-- Animated Background - Same as main site -->
+    <div class="background-container cinematic-bg">
+        <div class="sky-background night-sky"></div>
+        <div class="stars-container">
+            <div class="star-layer star-layer-1"></div>
+            <div class="star-layer star-layer-2"></div>
+            <div class="star-layer star-layer-3"></div>
+        </div>
+        <div class="clouds-container night-clouds">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+            <div class="cloud cloud-5"></div>
+        </div>
+        <div class="moon-glow"></div>
+        <div class="lamp-glow"></div>
+        <div class="floating-shapes cinematic-shapes">
+            <div class="shape star"><i class="fas fa-star"></i></div>
+            <div class="shape block"><i class="fas fa-cube"></i></div>
+            <div class="shape rocket"><i class="fas fa-rocket"></i></div>
+            <div class="shape ball"><i class="fas fa-circle"></i></div>
+            <div class="shape dinosaur"><i class="fas fa-dragon"></i></div>
+            <div class="shape sheriff"><i class="fas fa-sheriff-badge"></i></div>
+        </div>
+        <div class="fog-layer"></div>
+    </div>
+
+    <!-- Custom Cursor (optional for admin) -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-card glassmorphism-card admin-login-card">
+            <!-- Header -->
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-hat-cowboy"></i>
+                </div>
+                <h1 class="login-title">TOY STORY</h1>
+                <h2 class="login-subtitle">Admin Portal</h2>
+                <p class="login-description">Manage your fan site content</p>
+            </div>
+
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm" action="/admin/login.php" method="POST">
+                <!-- Username Field -->
+                <div class="form-group">
+                    <label for="username" class="form-label">
+                        <i class="fas fa-user"></i>
+                        <span>Username</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="form-input glass-input" 
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            required
+                            aria-required="true"
+                        >
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
+                    <span class="validation-message" id="usernameError"></span>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="fas fa-lock"></i>
+                        <span>Password</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input glass-input" 
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                            aria-required="true"
+                        >
+                        <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <i class="fas fa-lock input-icon"></i>
+                    </div>
+                    <span class="validation-message" id="passwordError"></span>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember" id="remember">
+                        <span class="checkmark"></span>
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+
+                <!-- Sign In Button -->
+                <button type="submit" class="btn btn-primary login-btn cinematic-btn btn-glow-effect">
+                    <span class="btn-text">Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <span class="btn-shine"></span>
+                    <span class="cinematic-loader-inline hidden" id="loginLoader">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </span>
+                </button>
+
+                <!-- Validation Messages Container -->
+                <div class="validation-container" id="validationContainer">
+                    <div class="toast toast-success hidden" id="successToast">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Login successful! Redirecting...</span>
+                    </div>
+                    <div class="toast toast-error hidden" id="errorToast">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Invalid credentials. Please try again.</span>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Back to Fan Site -->
+            <div class="back-to-site">
+                <a href="main.html" class="btn btn-secondary cinematic-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Fan Site</span>
+                    <span class="btn-shine"></span>
+                </a>
+            </div>
+
+            <!-- Decorative Elements -->
+            <div class="login-decoration">
+                <div class="decoration-star"><i class="fas fa-star"></i></div>
+                <div class="decoration-circle"></div>
+                <div class="decoration-star"><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+
+        <!-- Footer Info -->
+        <div class="login-footer">
+            <p>&copy; 2024 Toy Story Fan Site. All rights reserved.</p>
+            <p class="footer-note">To Infinity and Beyond!</p>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
