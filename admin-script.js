@@ -26,10 +26,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Login form submission with loader animation
+    // Login form submission with backend integration
     if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
+        loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            
+            // Clear previous messages
+            formMessages.innerHTML = '';
+            
+            // Validate inputs
+            if (!username || !password) {
+                showMessage('Please enter both username and password', 'error');
+                return;
+            }
             
             // Show loader
             const btnText = signInBtn.querySelector('.btn-text');
@@ -39,21 +51,39 @@ document.addEventListener('DOMContentLoaded', function() {
             btnLoader.style.display = 'inline-flex';
             signInBtn.disabled = true;
             
-            // Simulate API call (replace with actual backend integration)
-            setTimeout(() => {
+            try {
+                // Call login API
+                const response = await fetch('api/login.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage(result.message, 'success');
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = result.redirect || 'admin-dashboard.html';
+                    }, 1000);
+                } else {
+                    showMessage(result.message || 'Login failed. Please try again.', 'error');
+                    // Reset button state
+                    btnText.style.display = 'inline';
+                    btnLoader.style.display = 'none';
+                    signInBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage('An error occurred. Please check your connection and try again.', 'error');
                 // Reset button state
                 btnText.style.display = 'inline';
                 btnLoader.style.display = 'none';
                 signInBtn.disabled = false;
-                
-                // Show success message (replace with actual authentication logic)
-                showMessage('Login successful! Redirecting...', 'success');
-                
-                // Redirect to dashboard (in production, verify credentials first)
-                setTimeout(() => {
-                    window.location.href = 'admin-dashboard.html';
-                }, 1000);
-            }, 2000);
+            }
         });
     }
     
@@ -198,47 +228,81 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Form submissions (placeholder for backend integration)
+    // Form submissions with backend integration
     const addMovieForm = document.getElementById('addMovieForm');
     const addCharacterForm = document.getElementById('addCharacterForm');
     
     if (addMovieForm) {
-        addMovieForm.addEventListener('submit', function(e) {
+        addMovieForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Collect form data
             const formData = new FormData(this);
             const movieData = Object.fromEntries(formData.entries());
             
-            console.log('Movie Data:', movieData);
+            // Convert numeric fields
+            movieData.release_year = parseInt(movieData.release_year) || 0;
+            movieData.runtime_minutes = parseInt(movieData.runtime_minutes) || 0;
             
-            // Show success and close modal
-            alert('Movie saved successfully! (Connect to backend to persist data)');
-            closeModal(addMovieModal);
-            this.reset();
-            
-            // TODO: Send to backend via fetch/AJAX
-            // fetch('/api/movies', { method: 'POST', body: JSON.stringify(movieData) })
+            try {
+                const response = await fetch('api/save-movie.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(movieData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Movie saved successfully!');
+                    closeModal(addMovieModal);
+                    this.reset();
+                    // Reload the movies table
+                    loadMovies();
+                } else {
+                    alert(result.message || 'Failed to save movie');
+                }
+            } catch (error) {
+                console.error('Save movie error:', error);
+                alert('An error occurred while saving the movie');
+            }
         });
     }
     
     if (addCharacterForm) {
-        addCharacterForm.addEventListener('submit', function(e) {
+        addCharacterForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Collect form data
             const formData = new FormData(this);
             const characterData = Object.fromEntries(formData.entries());
             
-            console.log('Character Data:', characterData);
-            
-            // Show success and close modal
-            alert('Character saved successfully! (Connect to backend to persist data)');
-            closeModal(addCharacterModal);
-            this.reset();
-            
-            // TODO: Send to backend via fetch/AJAX
-            // fetch('/api/characters', { method: 'POST', body: JSON.stringify(characterData) })
+            try {
+                const response = await fetch('api/save-character.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(characterData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Character saved successfully!');
+                    closeModal(addCharacterModal);
+                    this.reset();
+                    // Reload the characters table
+                    loadCharacters();
+                } else {
+                    alert(result.message || 'Failed to save character');
+                }
+            } catch (error) {
+                console.error('Save character error:', error);
+                alert('An error occurred while saving the character');
+            }
         });
     }
     
@@ -348,26 +412,52 @@ document.addEventListener('DOMContentLoaded', function() {
         rows.forEach(row => tableBody.appendChild(row));
     }
     
-    // Edit/Delete action handlers (placeholder)
-    document.addEventListener('click', function(e) {
+    // Edit/Delete action handlers with backend integration
+    document.addEventListener('click', async function(e) {
         if (e.target.closest('.btn-edit')) {
-            const row = e.target.closest('tr');
+            const btn = e.target.closest('.btn-edit');
+            const row = btn.closest('tr');
             const id = row.cells[0].textContent;
             const name = row.cells[1].textContent;
+            const tableType = row.closest('table').id.includes('movies') ? 'movie' : 'character';
             
-            console.log('Edit item:', id, name);
-            alert(`Edit functionality for: ${name} (ID: ${id})\n\nConnect to backend to implement editing.`);
+            console.log('Edit item:', id, name, tableType);
+            alert(`Edit functionality for: ${name} (ID: ${id})\n\nImplement edit modal with pre-populated data.`);
+            // TODO: Fetch item data and open edit modal
+            // fetch(`api/get-${tableType}s.php?id=${id}`)...
         }
         
         if (e.target.closest('.btn-delete')) {
-            const row = e.target.closest('tr');
+            const btn = e.target.closest('.btn-delete');
+            const row = btn.closest('tr');
             const id = row.cells[0].textContent;
             const name = row.cells[1].textContent;
+            const tableType = row.closest('table').id.includes('movies') ? 'movie' : 'character';
             
             if (confirm(`Are you sure you want to delete "${name}"?`)) {
-                console.log('Delete item:', id, name);
-                row.remove();
-                alert(`Item deleted! (Connect to backend to persist deletion)`);
+                try {
+                    const response = await fetch(`api/delete-${tableType}.php`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: parseInt(id) })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        row.remove();
+                        alert(`${tableType === 'movie' ? 'Movie' : 'Character'} deleted successfully!`);
+                        // Reload stats
+                        loadStats();
+                    } else {
+                        alert(result.message || 'Failed to delete item');
+                    }
+                } catch (error) {
+                    console.error('Delete error:', error);
+                    alert('An error occurred while deleting the item');
+                }
             }
         }
     });
@@ -451,6 +541,130 @@ document.addEventListener('DOMContentLoaded', function() {
         section.style.transform = 'translateY(20px)';
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(section);
-    });
-    
+
+    // ============================================
+    // DATA LOADING FUNCTIONS FOR DASHBOARD
+    // ============================================
+
+    // Load dashboard stats
+    async function loadStats() {
+        try {
+            const response = await fetch('api/get-stats.php');
+            const result = await response.json();
+            
+            if (result.success) {
+                const stats = result.data;
+                
+                // Update stat cards
+                const movieStat = document.querySelector('[data-stat="movies"] .stat-number');
+                const charStat = document.querySelector('[data-stat="characters"] .stat-number');
+                const sessionsStat = document.querySelector('[data-stat="sessions"] .stat-number');
+                const lastUpdatedEl = document.getElementById('lastUpdated');
+                
+                if (movieStat) movieStat.textContent = stats.total_movies;
+                if (charStat) charStat.textContent = stats.total_characters;
+                if (sessionsStat) sessionsStat.textContent = stats.active_sessions;
+                if (lastUpdatedEl && stats.last_updated) {
+                    const date = new Date(stats.last_updated);
+                    lastUpdatedEl.textContent = date.toLocaleString();
+                }
+            }
+        } catch (error) {
+            console.error('Error loading stats:', error);
+        }
+    }
+
+    // Load movies table
+    async function loadMovies() {
+        try {
+            const response = await fetch('api/get-movies.php');
+            const result = await response.json();
+            
+            if (result.success) {
+                const tableBody = document.getElementById('moviesTableBody');
+                const emptyState = document.getElementById('moviesEmptyState');
+                
+                if (!tableBody) return;
+                
+                tableBody.innerHTML = '';
+                
+                if (result.data.length === 0) {
+                    if (emptyState) emptyState.style.display = 'block';
+                } else {
+                    if (emptyState) emptyState.style.display = 'none';
+                    
+                    result.data.forEach(movie => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${movie.id}</td>
+                            <td>${movie.title}</td>
+                            <td>${movie.release_year}</td>
+                            <td>${movie.rating || 'N/A'}</td>
+                            <td><img src="${movie.poster_url || ''}" alt="${movie.title}" class="poster-preview"></td>
+                            <td>
+                                <button class="btn btn-sm btn-edit" data-id="${movie.id}">✏️ Edit</button>
+                                <button class="btn btn-sm btn-delete" data-id="${movie.id}">🗑️ Delete</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                }
+            }
+        } catch (error) {
+            console.error('Error loading movies:', error);
+        }
+    }
+
+    // Load characters table
+    async function loadCharacters() {
+        try {
+            const response = await fetch('api/get-characters.php');
+            const result = await response.json();
+            
+            if (result.success) {
+                const tableBody = document.getElementById('charactersTableBody');
+                const emptyState = document.getElementById('charactersEmptyState');
+                
+                if (!tableBody) return;
+                
+                tableBody.innerHTML = '';
+                
+                if (result.data.length === 0) {
+                    if (emptyState) emptyState.style.display = 'block';
+                } else {
+                    if (emptyState) emptyState.style.display = 'none';
+                    
+                    result.data.forEach(character => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${character.id}</td>
+                            <td>
+                                <div class="character-cell">
+                                    <img src="${character.avatar_url || ''}" alt="${character.name}" class="avatar-preview">
+                                    <span>${character.name}</span>
+                                </div>
+                            </td>
+                            <td>${character.role_title || 'N/A'}</td>
+                            <td class="quote-preview">"${(character.quote || '').substring(0, 50)}..."</td>
+                            <td>
+                                <button class="btn btn-sm btn-edit" data-id="${character.id}">✏️ Edit</button>
+                                <button class="btn btn-sm btn-delete" data-id="${character.id}">🗑️ Delete</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                }
+            }
+        } catch (error) {
+            console.error('Error loading characters:', error);
+        }
+    }
+
+    // Load initial data on dashboard page
+    if (document.getElementById('moviesTableBody')) {
+        loadStats();
+        loadMovies();
+        loadCharacters();
+    }
+
 });
