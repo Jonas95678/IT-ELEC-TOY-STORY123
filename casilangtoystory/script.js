@@ -62,11 +62,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const navActions = document.getElementById('navActions');
 
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
+            // Toggle visibility of nav actions on mobile
+            if (navActions && window.innerWidth <= 768) {
+                navActions.classList.toggle('active');
+            }
         });
     }
 
@@ -74,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             hamburger.classList.remove('active');
+            if (navActions) {
+                navActions.classList.remove('active');
+            }
         });
     });
 
