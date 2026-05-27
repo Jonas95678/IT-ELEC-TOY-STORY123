@@ -1,0 +1,624 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toy Story Fan Site | To Infinity and Beyond</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cinematic Loading Screen -->
+    <div class="cinematic-loader" id="cinematicLoader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fas fa-hat-cowboy"></i>
+                <span>TOY STORY</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <p class="loader-text">Loading Andy's Room...</p>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Animated Background - Nighttime Andy's Room -->
+    <div class="background-container cinematic-bg">
+        <!-- Deep night sky gradient -->
+        <div class="sky-background night-sky"></div>
+
+        <!-- Animated stars -->
+        <div class="stars-container">
+            <div class="star-layer star-layer-1"></div>
+            <div class="star-layer star-layer-2"></div>
+            <div class="star-layer star-layer-3"></div>
+        </div>
+
+        <!-- Moving cinematic clouds at night -->
+        <div class="clouds-container night-clouds">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+            <div class="cloud cloud-5"></div>
+        </div>
+
+        <!-- Moonlight glow -->
+        <div class="moon-glow"></div>
+
+        <!-- Warm ambient lighting from lamp -->
+        <div class="lamp-glow"></div>
+
+        <!-- Floating toy particles -->
+        <div class="floating-shapes cinematic-shapes">
+            <div class="shape star"><i class="fas fa-star"></i></div>
+            <div class="shape block"><i class="fas fa-cube"></i></div>
+            <div class="shape rocket"><i class="fas fa-rocket"></i></div>
+            <div class="shape ball"><i class="fas fa-circle"></i></div>
+            <div class="shape dinosaur"><i class="fas fa-dragon"></i></div>
+            <div class="shape sheriff"><i class="fas fa-sheriff-badge"></i></div>
+        </div>
+
+        <!-- Fog/mist layer for depth -->
+        <div class="fog-layer"></div>
+
+        <!-- Toy block silhouettes -->
+        <div class="toy-silhouettes">
+            <div class="silhouette silhouette-1"><i class="fas fa-cube"></i></div>
+            <div class="silhouette silhouette-2"><i class="fas fa-shapes"></i></div>
+            <div class="silhouette silhouette-3"><i class="fas fa-puzzle-piece"></i></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">TOY STORY</span>
+                <span class="logo-subtitle">Fan Experience</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#movies" class="nav-link">Movies</a></li>
+                <li><a href="#characters" class="nav-link">Characters</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Cinematic Pixar Landing Experience -->
+    <section id="home" class="hero-section cinematic-hero">
+        <!-- Parallax layers for depth -->
+        <div class="hero-parallax-layer hero-bg-layer"></div>
+        <div class="hero-parallax-layer hero-mid-layer"></div>
+        <div class="hero-parallax-layer hero-fg-layer"></div>
+
+        <div class="hero-content cinematic-hero-content">
+            <!-- Animated badge with glow -->
+            <div class="hero-badge cinematic-badge">
+                <i class="fas fa-film"></i> A Pixar Masterpiece
+                <span class="badge-glow"></span>
+            </div>
+
+            <!-- Dramatic typography with layered effects -->
+            <h1 class="hero-title cinematic-title">
+                <span class="title-line title-line-1">Welcome to</span>
+                <span class="title-line highlight title-line-2">
+                    <span class="">Andy's Room</span>
+                </span>
+            </h1>
+
+            <!-- Slogan with quote animation -->
+            <p class="hero-slogan cinematic-slogan">
+                <span class="quote-icon-left"><i class="fas fa-quote-left"></i></span>
+                <span class="slogan-text">To Infinity and Beyond!</span>
+                <span class="quote-icon-right"><i class="fas fa-quote-right"></i></span>
+            </p>
+
+            <!-- Enhanced description -->
+            <p class="hero-description cinematic-description">
+                Step into the magical world where toys come to life when humans aren't looking.
+                Join Woody, Buzz, and all your favorite friends on an unforgettable adventure!
+            </p>
+
+            <!-- CTA buttons with ripple effect -->
+            <div class="hero-buttons cinematic-buttons">
+                <a href="#movies" class="btn btn-primary cinematic-btn btn-glow-effect">
+                    <i class="fas fa-play"></i> Explore Movies
+                    <span class="btn-shine"></span>
+                </a>
+                <a href="#characters" class="btn btn-secondary cinematic-btn btn-glow-effect">
+                    <i class="fas fa-users"></i> Meet Characters
+                    <span class="btn-shine"></span>
+                </a>
+            </div>
+
+            <!-- Enhanced scroll indicator -->
+            <div class="scroll-indicator cinematic-scroll">
+                <span>Scroll Down</span>
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+
+        <!-- Giant cinematic character composition -->
+        <div class="hero-visuals cinematic-hero-visuals">
+            <!-- Foreground floating elements with glow -->
+            <div class="floating-element woody-float cinematic-float">
+                <div class="character-placeholder woody-color cinematic-character">
+                    <i class="fas fa-hat-cowboy"></i>
+                    <div class="character-glow woody-glow"></div>
+                    <div class="character-particles"></div>
+                </div>
+            </div>
+            <div class="floating-element buzz-float cinematic-float">
+                <div class="character-placeholder buzz-color cinematic-character">
+                    <i class="fas fa-rocket"></i>
+                    <div class="character-glow buzz-glow"></div>
+                    <div class="character-particles"></div>
+                </div>
+            </div>
+            <div class="floating-element jessie-float cinematic-float">
+                <div class="character-placeholder jessie-color cinematic-character">
+                    <i class="fas fa-horse-head"></i>
+                    <div class="character-glow jessie-glow"></div>
+                    <div class="character-particles"></div>
+                </div>
+            </div>
+
+            <!-- Additional floating elements for depth -->
+            <div class="floating-element extra-float float-1">
+                <div class="mini-toy-icon"><i class="fas fa-star"></i></div>
+            </div>
+            <div class="floating-element extra-float float-2">
+                <div class="mini-toy-icon"><i class="fas fa-circle"></i></div>
+            </div>
+            <div class="floating-element extra-float float-3">
+                <div class="mini-toy-icon"><i class="fas fa-cube"></i></div>
+            </div>
+        </div>
+
+        <!-- Cinematic lighting overlays -->
+        <div class="cinematic-lighting-overlay">
+            <div class="spotlight spotlight-1"></div>
+            <div class="spotlight spotlight-2"></div>
+            <div class="lens-flare"></div>
+        </div>
+
+        <!-- Floating particles -->
+        <div class="hero-particles-container">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+        </div>
+    </section>
+
+    <!-- About Section - Pixar Museum Experience -->
+    <section id="about" class="about-section cinematic-about">
+        <div class="section-container">
+            <div class="section-header cinematic-header">
+                <span class="section-badge cinematic-badge-section">The Story</span>
+                <h2 class="section-title cinematic-section-title">About Toy Story</h2>
+                <div class="title-decoration cinematic-decoration">
+                    <span class="decor-star"><i class="fas fa-star"></i></span>
+                    <span class="decor-circle"></span>
+                    <span class="decor-star"><i class="fas fa-star"></i></span>
+                </div>
+            </div>
+
+            <!-- Enhanced about grid with glassmorphism -->
+            <div class="about-grid cinematic-about-grid">
+                <!-- Main story card - expanded -->
+                <div class="about-card main-card cinematic-card glassmorphism-card">
+                    <div class="card-icon cinematic-card-icon">
+                        <i class="fas fa-book-open"></i>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3 class="cinematic-card-title">The Beginning</h3>
+                    <p class="cinematic-card-text">Released in 1995, Toy Story revolutionized animation as the first fully computer-animated feature film. Created by Pixar Animation Studios and distributed by Walt Disney Pictures, it introduced audiences to a world where toys have their own secret lives.</p>
+                    <div class="card-expand-content">
+                        <div class="expand-section">
+                            <h4><i class="fas fa-lightbulb"></i> Pixar's Innovation</h4>
+                            <p>Pixar's groundbreaking RenderMan software brought unprecedented realism to animated characters, setting a new standard for the industry.</p>
+                        </div>
+                        <div class="expand-section">
+                            <h4><i class="fas fa-award"></i> Awards & Achievements</h4>
+                            <p>Nominated for 3 Academy Awards including Best Original Screenplay, and won a Special Achievement Award for John Lasseter.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat cards with animated counters -->
+                <div class="about-card stat-card cinematic-stat-card glassmorphism-card">
+                    <div class="stat-number cinematic-stat" data-target="4">0</div>
+                    <div class="stat-label">Feature Films</div>
+                    <div class="stat-icon"><i class="fas fa-film"></i></div>
+                    <div class="stat-glow"></div>
+                </div>
+
+                <div class="about-card stat-card cinematic-stat-card glassmorphism-card">
+                    <div class="stat-number cinematic-stat" data-target="3">0</div>
+                    <div class="stat-label">Box Office (Billions)</div>
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-glow"></div>
+                </div>
+
+                <!-- Expanded timeline card -->
+                <div class="about-card timeline-card cinematic-timeline-card glassmorphism-card">
+                    <h3 class="cinematic-card-title"><i class="fas fa-history"></i> Timeline</h3>
+                    <div class="timeline cinematic-timeline">
+                        <div class="timeline-item cinematic-timeline-item" data-year="1995">
+                            <span class="year">1995</span>
+                            <span class="event">Toy Story 1</span>
+                            <span class="timeline-detail">The original classic</span>
+                        </div>
+                        <div class="timeline-item cinematic-timeline-item" data-year="1999">
+                            <span class="year">1999</span>
+                            <span class="event">Toy Story 2</span>
+                            <span class="timeline-detail">The toys are back!</span>
+                        </div>
+                        <div class="timeline-item cinematic-timeline-item" data-year="2010">
+                            <span class="year">2010</span>
+                            <span class="event">Toy Story 3</span>
+                            <span class="timeline-detail">No toy gets left behind</span>
+                        </div>
+                        <div class="timeline-item cinematic-timeline-item" data-year="2019">
+                            <span class="year">2019</span>
+                            <span class="event">Toy Story 4</span>
+                            <span class="timeline-detail">Find your inner voice</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW: Additional content cards -->
+                <div class="about-card info-card cinematic-info-card glassmorphism-card">
+                    <div class="card-icon cinematic-card-icon buzz-icon">
+                        <i class="fas fa-rocket"></i>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3 class="cinematic-card-title">Cultural Impact</h3>
+                    <p class="cinematic-card-text">Toy Story changed how we think about animation forever. Its themes of friendship, loyalty, and growing up resonated across generations.</p>
+                    <ul class="info-list">
+                        <li><i class="fas fa-check"></i> First fully CGI animated feature</li>
+                        <li><i class="fas fa-check"></i> Launched Pixar's golden era</li>
+                        <li><i class="fas fa-check"></i> Inspired countless animated films</li>
+                    </ul>
+                </div>
+
+                <div class="about-card info-card cinematic-info-card glassmorphism-card">
+                    <div class="card-icon cinematic-card-icon woody-icon">
+                        <i class="fas fa-users"></i>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3 class="cinematic-card-title">Voice Cast Legacy</h3>
+                    <p class="cinematic-card-text">Tom Hanks and Tim Allen became iconic voices of Woody and Buzz, bringing depth and humor that defined these beloved characters.</p>
+                    <ul class="info-list">
+                        <li><i class="fas fa-microphone"></i> Tom Hanks as Woody</li>
+                        <li><i class="fas fa-microphone"></i> Tim Allen as Buzz</li>
+                        <li><i class="fas fa-microphone"></i> Joan Cusack as Jessie</li>
+                    </ul>
+                </div>
+
+                <div class="about-card trivia-card cinematic-trivia-card glassmorphism-card full-width">
+                    <div class="card-icon cinematic-card-icon trivia-icon">
+                        <i class="fas fa-lightbulb"></i>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3 class="cinematic-card-title">Fun Trivia & Behind the Scenes</h3>
+                    <div class="trivia-grid">
+                        <div class="trivia-item">
+                            <i class="fas fa-star"></i>
+                            <p>The original title was "You Are a Toy"</p>
+                        </div>
+                        <div class="trivia-item">
+                            <i class="fas fa-star"></i>
+                            <p>Buzz Lightyear was named after Apollo astronaut Buzz Aldrin</p>
+                        </div>
+                        <div class="trivia-item">
+                            <i class="fas fa-star"></i>
+                            <p>The carpet pattern in Sid's house appears in multiple Pixar films</p>
+                        </div>
+                        <div class="trivia-item">
+                            <i class="fas fa-star"></i>
+                            <p>Woody was originally going to be a ventriloquist dummy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <section id="movies" class="movies-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">The Collection</span>
+                <h2 class="section-title">Movies</h2>
+                <div class="title-decoration">
+                    <span class="decor-star"><i class="fas fa-star"></i></span>
+                    <span class="decor-circle"></span>
+                    <span class="decor-star"><i class="fas fa-star"></i></span>
+                </div>
+            </div>
+
+            <div class="movies-grid">
+                <div class="movie-card" data-tilt>
+                    <div class="movie-poster">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/movies/toy-story-1.jpg" -->
+                        <img src="img/toystory1.webp" alt="Toy Story 1" class="movie-poster-img">
+                        <div class="year-badge">1995</div>
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>Toy Story</h3>
+                        <p class="movie-tagline">Hang on for the comedy that goes to infinity and beyond!</p>
+                        <div class="movie-meta">
+                            <span><i class="fas fa-clock"></i> 81 min</span>
+                            <span><i class="fas fa-star"></i> 8.3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="movie-card" data-tilt>
+                    <div class="movie-poster">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/movies/toy-story-2.jpg" -->
+                        <img src="img/Toy_Story_2_-_Poster.webp" alt="Toy Story 2" class="movie-poster-img">
+                        <div class="year-badge">1999</div>
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>Toy Story 2</h3>
+                        <p class="movie-tagline">The toys are back!</p>
+                        <div class="movie-meta">
+                            <span><i class="fas fa-clock"></i> 92 min</span>
+                            <span><i class="fas fa-star"></i> 7.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="movie-card" data-tilt>
+                    <div class="movie-poster">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/movies/toy-story-3.jpg" -->
+                        <img src="img/toystory3.jpg" alt="Toy Story 3" class="movie-poster-img">
+                        <div class="year-badge">2010</div>
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>Toy Story 3</h3>
+                        <p class="movie-tagline">No toy gets left behind.</p>
+                        <div class="movie-meta">
+                            <span><i class="fas fa-clock"></i> 103 min</span>
+                            <span><i class="fas fa-star"></i> 8.3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="movie-card" data-tilt>
+                    <div class="movie-poster">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/movies/toy-story-4.jpg" -->
+                        <img src="img/toystory4.jpg" alt="Toy Story 4" class="movie-poster-img">
+                        <div class="year-badge">2019</div>
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>Toy Story 4</h3>
+                        <p class="movie-tagline">Get Ready to Hit the Road</p>
+                        <div class="movie-meta">
+                            <span><i class="fas fa-clock"></i> 100 min</span>
+                            <span><i class="fas fa-star"></i> 7.7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section id="characters" class="characters-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Meet the Gang</span>
+                <h2 class="section-title">Characters</h2>
+                <div class="title-decoration">
+                    <span class="decor-star"><i class="fas fa-star"></i></span>
+                    <span class="decor-circle"></span>
+                    <span class="decor-star"><i class="fas fa-star"></i></span>
+                </div>
+            </div>
+
+            <div class="characters-grid">
+                <div class="character-card woody">
+                    <div class="character-avatar">
+                        <img src="img/woody.jpg" alt="Woody">
+                    </div>
+                    <div class="character-overlay"></div>
+                    <div class="character-info">
+                        <h3>Woody</h3>
+                        <p class="character-role">The Cowboy Leader</p>
+                        <p class="character-quote">"You've got a friend in me!"</p>
+                        <div class="character-badges">
+                            <span class="badge badge-brave"><i class="fas fa-shield-alt"></i> Brave</span>
+                            <span class="badge badge-loyal"><i class="fas fa-heart"></i> Loyal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card buzz">
+                    <div class="character-avatar">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/characters/buzz.jpg" -->
+                        <img src="img/buzz.jpg" alt="Buzz Lightyear">
+                    </div>
+                    <div class="character-overlay"></div>
+                    <div class="character-info">
+                        <h3>Buzz Lightyear</h3>
+                        <p class="character-role">Space Ranger</p>
+                        <p class="character-quote">"To infinity and beyond!"</p>
+                        <div class="character-badges">
+                            <span class="badge badge-hero"><i class="fas fa-star"></i> Hero</span>
+                            <span class="badge badge-bold"><i class="fas fa-bolt"></i> Bold</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card jessie">
+                    <div class="character-avatar">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/characters/jessie.jpg" -->
+                        <img src="img/jessie.jpg" alt="Jessie">
+                    </div>
+                    <div class="character-overlay"></div>
+                    <div class="character-info">
+                        <h3>Jessie</h3>
+                        <p class="character-role">The Yodeling Cowgirl</p>
+                        <p class="character-quote">"I'm going!", "I'm going!"</p>
+                        <div class="character-badges">
+                            <span class="badge badge-energetic"><i class="fas fa-bolt"></i> Energetic</span>
+                            <span class="badge badge-fun"><i class="fas fa-laugh"></i> Fun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card rexy">
+                    <div class="character-avatar">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/characters/rex.jpg" -->
+                        <img src="img/rex.jpg" alt="Rex">
+                    </div>
+                    <div class="character-overlay"></div>
+                    <div class="character-info">
+                        <h3>Rex</h3>
+                        <p class="character-role">The Anxious Dinosaur</p>
+                        <p class="character-quote">"I don't think I can do this!"</p>
+                        <div class="character-badges">
+                            <span class="badge badge-caring"><i class="fas fa-heart"></i> Caring</span>
+                            <span class="badge badge-nervous"><i class="fas fa-cloud"></i> Nervous</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card ham">
+                    <div class="character-avatar">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/characters/hamm.jpg" -->
+                        <img src="img/hamm.jpg" alt="Hamm">
+                    </div>
+                    <div class="character-overlay"></div>
+                    <div class="character-info">
+                        <h3>Hamm</h3>
+                        <p class="character-role">The Wise Piggy Bank</p>
+                        <p class="character-quote">"It's déjà vu all over again!"</p>
+                        <div class="character-badges">
+                            <span class="badge badge-smart"><i class="fas fa-brain"></i> Smart</span>
+                            <span class="badge badge-witty"><i class="fas fa-comment"></i> Witty</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card slinky">
+                    <div class="character-avatar">
+                        <!-- REPLACE src BELOW with your local image: e.g., "images/characters/slinky.jpg" -->
+                        <img src="img/dog.jpg" alt="Slinky Dog">
+                    </div>
+                    <div class="character-overlay"></div>
+                    <div class="character-info">
+                        <h3>Slinky Dog</h3>
+                        <p class="character-role">The Loyal Friend</p>
+                        <p class="character-quote">"I gotta get me one of these!"</p>
+                        <div class="character-badges">
+                            <span class="badge badge-loyal"><i class="fas fa-heart"></i> Loyal</span>
+                            <span class="badge badge-friendly"><i class="fas fa-smile"></i> Friendly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Footer Section -->
+    <footer id="contact" class="footer-section">
+        <div class="toy-box-container">
+            <div class="toy-box-lid"></div>
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-column brand-column">
+                        <div class="footer-logo">
+                            <i class="fas fa-toy-box"></i>
+                            <span>TOY STORY</span>
+                        </div>
+                        <p>A fan-made tribute to the beloved Pixar franchise that brought toys to life and captured our hearts.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column links-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                            <li><a href="#movies"><i class="fas fa-chevron-right"></i> Movies</a></li>
+                            <li><a href="#characters"><i class="fas fa-chevron-right"></i> Characters</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column contact-column">
+                        <h4>Get In Touch</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@toystoryfan.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Andy's Room, USA</span>
+                        </div>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email...">
+                            <button type="submit" class="btn-subscribe">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-decorations">
+                        <span class="mini-toy"><i class="fas fa-star"></i></span>
+                        <span class="mini-toy"><i class="fas fa-cube"></i></span>
+                        <span class="mini-toy"><i class="fas fa-rocket"></i></span>
+                        <span class="mini-toy"><i class="fas fa-hat-cowboy"></i></span>
+                    </div>
+                    <p>&copy; 2026 Toy Story Fan Site. Made with <i class="fas fa-heart"></i> for fans everywhere.</p>
+                    <p class="disclaimer">This is a fan-made website. Toy Story and all related characters are trademarks of Disney/Pixar.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
