@@ -1747,10 +1747,13 @@
         line-height: 1.45;
     }
 
-    .character-badges {
-        display: flex;
-        gap: 0.4rem;
-        flex-wrap: wrap;
+    .character-description {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.5;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .badge {
@@ -1762,18 +1765,6 @@
         font-size: 0.75rem;
         font-weight: 600;
     }
-
-    .badge-brave { background: rgba(217, 56, 30, 0.3); color: #ff6b6b; }
-    .badge-loyal { background: rgba(244, 197, 66, 0.3); color: var(--warm-gold); }
-    .badge-hero { background: rgba(46, 204, 113, 0.3); color: var(--buzz-green); }
-    .badge-bold { background: rgba(155, 89, 182, 0.3); color: var(--buzz-purple); }
-    .badge-energetic { background: rgba(255, 107, 53, 0.3); color: #ff8c5a; }
-    .badge-fun { background: rgba(255, 215, 0, 0.3); color: var(--warm-gold); }
-    .badge-caring { background: rgba(236, 112, 149, 0.3); color: #ec7095; }
-    .badge-nervous { background: rgba(100, 150, 200, 0.3); color: #6496c8; }
-    .badge-smart { background: rgba(100, 200, 150, 0.3); color: #64c896; }
-    .badge-witty { background: rgba(200, 150, 100, 0.3); color: #c89664; }
-    .badge-friendly { background: rgba(150, 200, 100, 0.3); color: #96c864; }
 
     .character-card:hover {
         transform: translateY(-15px);
